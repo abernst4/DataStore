@@ -70,6 +70,9 @@ public class User {
             inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
     private Set<Group> groups = new HashSet<>();
 
+    public void addGroup(Group group) {
+        this.groups.add(group);
+    }
 }
 
 /*
