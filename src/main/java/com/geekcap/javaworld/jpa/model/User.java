@@ -39,13 +39,29 @@ public class User {
 
     }
 
-    public User (Integer id, String email) {
+    public User(Integer id, String email) {
         this.id = id;
         this.email = email;
     }
 
-    public Book(String name) {
-        this.name = name;
+    public User(String email) {
+        this.email = email;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String name) {
+        this.email = name;
     }
 
     @ManyToMany

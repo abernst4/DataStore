@@ -29,6 +29,8 @@ public class Group {
     private String name;
     //@Column(name="ISBN_NUMBER")
     //private String isbn;
-    @ManyToMany(mappedBy = "group")
+
+    @ManyToMany(mappedBy = "groups")
     private Set<User> users = new HashSet<>();
+
 }
