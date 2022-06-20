@@ -1,6 +1,6 @@
-package main.java.com.geekcap.javaworld.jpa.repository;
-import main.java.com.geekcap.javaworld.jpa.model.Group; //THE BUG IS IN MY PACKAGING; SINCE I SHOULDN'T HAVE TO USE MAIN/JAVA
-import main.java.com.geekcap.javaworld.jpa.model.*;
+package com.geekcap.javaworld.jpa.repository;
+import com.geekcap.javaworld.jpa.model.Group; //THE BUG IS IN MY PACKAGING; SINCE I SHOULDN'T HAVE TO USE MAIN/JAVA
+import com.geekcap.javaworld.jpa.model.*;
 import javax.persistence.EntityManager;
 import java.util.Optional;
 import java.util.Set;
