@@ -66,7 +66,7 @@ public class Jpa {
  
          // DEBUG, dump our tables
          entityManager.unwrap(Session.class).doWork(connection ->
-                 JdbcUtils.dumpTables(connection, "MOVIE", "SUPER_HERO", "SUPERHERO_MOVIES"));
+                 JdbcUtils.dumpTables(connection, "GROUP", "USER", "USER_GROUPS"));
 
         /*
         Optional<Author> savedAuthor = authorRepository.save(author);
