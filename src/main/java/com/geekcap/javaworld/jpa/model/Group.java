@@ -17,6 +17,8 @@ import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.ManyToMany;
 
+import static org.hibernate.annotations.CascadeType.*;
+
 @Entity
 @Table(name = "Group")
 @NamedQueries({
@@ -37,13 +39,13 @@ public class Group {
 
     public Group(int id, String name){
             this.id = id; 
-            this.name = name; 
+            this.name = name;
     }
 
     public Group(){}
 
 
-    @ManyToMany(mappedBy = "groups", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", cascade = PERSIST, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
     public int getID(){

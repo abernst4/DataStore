@@ -45,4 +45,28 @@ public class UserRepository {
         return Optional.empty();
     }
 
+    public void deleteById(Integer id) {
+        // Retrieve the movie with this ID
+        User user = entityManager.find(User.class, id);
+        if (user != null) {
+            try {
+                // Start a transaction because we're going to change the database
+                entityManager.getTransaction().begin();
+
+                // Remove all references to this superhero in its movies
+                user.getGroups().forEach(movie -> {
+                    movie.getUsers().remove(user);
+                });
+
+                // Now remove the superhero
+                entityManager.remove(user);
+
+                // Commit the transaction
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

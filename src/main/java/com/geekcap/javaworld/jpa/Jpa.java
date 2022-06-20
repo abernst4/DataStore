@@ -3,11 +3,15 @@ import com.geekcap.javaworld.jpa.model.User;
 import com.geekcap.javaworld.jpa.model.Group;
 import com.geekcap.javaworld.jpa.repository.UserRepository;
 import com.geekcap.javaworld.jpa.repository.GroupRepository;
+import org.hibernate.Session;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.jdbc.support.JdbcUtils;
+
 public class Jpa {
     public static void main(String[] args) {
         // Create our entity manager
