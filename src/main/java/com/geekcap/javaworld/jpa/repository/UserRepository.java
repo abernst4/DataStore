@@ -3,6 +3,7 @@ import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
 import java.util.Set;
 import java.util.Optional;
+
 public class UserRepository {
     private EntityManager entityManager;
     public UserRepository(EntityManager entityManager) {

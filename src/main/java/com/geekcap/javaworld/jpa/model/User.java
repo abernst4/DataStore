@@ -74,8 +74,8 @@ public class User {
         this.groups.add(group);
     }
 
-    public Set<Group> getGroups(){
-        return this.groups; 
+    public static Set<Group> getGroups(){
+        return this.groups;
     }
 }
 

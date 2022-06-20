@@ -71,4 +71,7 @@ public class Group {
         User.getGroups().add(this); 
     }
 
+    public String getId() {
+        return this.id.toString();
+    }
 }
