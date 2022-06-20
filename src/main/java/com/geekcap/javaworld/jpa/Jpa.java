@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
-public class JpaExample {
+public class Jpa {
     public static void main(String[] args) {
         // Create our entity manager
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Books");
@@ -16,14 +16,55 @@ public class JpaExample {
         // Create our repositories
         UserRepository userRepository = new UserRepository(entityManager);
         GroupRepository groupRepository = new GroupRepository(entityManager);
-        // Create an author and add 3 books to his list of books
-        User user = new user("Author 1");
-        for (int i = 1; i < 4; i++) {
-            String s = String.valueOf(i);
-            Group group = new Group(s);
-            user.addGroup(group);
-        }
+        
+        //create some Users
+        User user1 = new User(1, "one@mail.org");
+        User user2 = new User(2, "two@mail.org");
 
+        //create some groups
+        Group g1 = new Group(3, "group1");
+        g1.addUser(user1);
+        g1.addUser(user2);
+        Group g2 = new Group(4, "group2");
+        g2.addUser(user1);
+        g2.addUser(user2);
+
+        groupRepository.save(g1);
+        groupRepository.save(g2);
+
+        // Find all groups
+        System.out.println("Groups:");
+        groupRepository.findAll().forEach(group -> {
+            System.out.println("Group: [" + group.getId() + "] - " + group.getName());
+            group.getUsers().forEach(System.out::println);
+        });
+
+        // Find all superheroes
+        System.out.println("\nUsers:");
+        userRepository.findAll().forEach(user -> {
+            System.out.println(user);
+            user.getGroups().forEach(System.out::println); //there is currently NO METHOD TO GET GROUPS
+        });
+        
+         // Delete a group and verify that its Users are not deleted
+         groupRepository.deleteById(3);
+         System.out.println("\nGroups (AFTER DELETE):");
+         groupRepository.findAll().forEach(group -> {
+             System.out.println("Group: [" + group.getId() + "] - " + group.getName());
+             group.getUsers().forEach(System.out::println);
+         });
+         System.out.println("\nUsers (AFTER DELETE):");
+         userRepository.findAll().forEach(user -> {
+             System.out.println(user);
+             user.getGroups().forEach(System.out::println);
+         });
+ 
+ 
+         // DEBUG, dump our tables
+         entityManager.unwrap(Session.class).doWork(connection ->
+                 JdbcUtils.dumpTables(connection, "MOVIE", "SUPER_HERO", "SUPERHERO_MOVIES"));
+
+        /*
         Optional<Author> savedAuthor = authorRepository.save(author);
         System.out.println("Saved author: " + savedAuthor.get());
         // Find all authors
@@ -58,6 +99,8 @@ public class JpaExample {
             a.addBook(new Book("Book 4"));
             System.out.println("Saved author: " + authorRepository.save(a));
         });
+        */
+
         // Close the entity manager and associated factory
         entityManager.close();
         entityManagerFactory.close();

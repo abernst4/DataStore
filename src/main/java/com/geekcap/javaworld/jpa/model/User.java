@@ -73,6 +73,10 @@ public class User {
     public void addGroup(Group group) {
         this.groups.add(group);
     }
+
+    public Set<Group> getGroups(){
+        return this.groups; 
+    }
 }
 
 /*
