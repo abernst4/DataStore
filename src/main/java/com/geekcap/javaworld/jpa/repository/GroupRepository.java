@@ -56,7 +56,7 @@ public class GroupRepository{
         if(group != null){
             try{
                 manager.getTransaction().begin();
-                group.getUsers().forEach(User -> User.getGroup.remove(group));
+                group.getUsers().forEach(User -> User.getGroups().remove(group));
                 manager.remove(group);
                 manager.getTransaction().commit();
             }catch(Exception e){

@@ -1,23 +1,16 @@
 package com.geekcap.javaworld.jpa.model;
-
-import java.util.Set;
-import java.util.HashSet;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.hibernate.annotations.CascadeType;
-
-import javax.persistence.ManyToMany;
-
-import static org.hibernate.annotations.CascadeType.*;
 
 @Entity
 @Table(name = "Group")
@@ -45,7 +38,7 @@ public class Group {
     public Group(){}
 
 
-    @ManyToMany(mappedBy = "groups", cascade = PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
     public int getID(){
@@ -70,7 +63,7 @@ public class Group {
 
     public void addUser(User user){
         users.add(user);
-        User.getGroups().add(this); 
+        user.getGroups().add(this); 
     }
 
     public String getId() {
