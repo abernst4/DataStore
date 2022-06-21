@@ -35,3 +35,11 @@
                version="3.0">
     <persistence-unit name="default">
   -->
+
+        mvn "io.quarkus:quarkus-maven-plugin:create" \
+           -DprojectGroupId="com.redhat.developers" \
+           -DprojectArtifactId=“DataStore” \
+           -DprojectVersion="1.0-SNAPSHOT" \
+           -DclassName=“Group” \
+           -Dpath="home”
+
