@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.JoinTable;
 
 @Entity
+/*
 @Table(name = "User")
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", //findByName
@@ -28,10 +29,11 @@ import javax.persistence.JoinTable;
         @NamedQuery(name = "User.findAll",
                 query = "SELECT b FROM Group b")
 })
+ */
 
 public class User {
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
     private Integer id;
     private String first_name;
     private String last_name;
@@ -70,11 +72,13 @@ public class User {
     public void setEmail(String name) {
         this.email = name;
     }
-
+    
+    /*
     @ManyToMany
     @JoinTable(name="GROUP_USERS",
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
+     */
     private Set<Group> groups = new HashSet<>();
 
     public void addGroup(Group group) {
