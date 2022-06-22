@@ -78,7 +78,7 @@ public class UserRepository {
     }
 
 
-    public void deleteById(Integer id) {
+    public boolean deleteById(Integer id) {
         // Retrieve the movie with this ID
         User user = entityManager.find(User.class, id);
         if (user != null) {
@@ -96,7 +96,9 @@ public class UserRepository {
 
                 // Commit the transaction
                 entityManager.getTransaction().commit();
+                return True;
             } catch (Exception e) {
+                return False;
                 e.printStackTrace();
             }
         }

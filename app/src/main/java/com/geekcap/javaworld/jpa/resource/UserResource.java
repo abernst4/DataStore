@@ -1,7 +1,9 @@
 package com.geekcap.javaworld.jpa.resource;
 
 import com.geekcap.javaworld.jpa.model.User;
+import com.geekcap.javaworld.jpa.model.Group;
 import com.geekcap.javaworld.jpa.repository.UserRepository;
+import com.geekcap.javaworld.jpa.repository.GroupRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,7 @@ public class UserResource {
 
     @GET
     @Path("{id}")
-    public User getById(@PathParam("id") Long id) {
+    public User getById(@PathParam("id") Integer id) {
         return userRepository.findById(id);
     }
 
@@ -85,7 +87,7 @@ public class UserResource {
     @DELETE
     @Path("{id}")
     @Transactional
-    public Response deleteById(@PathParam("id") Long id) {
+    public Response deleteById(@PathParam("id") Integer id) {
         // Response response = Response.status(Status.CREATED).entity(art).build();
         boolean deleted = userRepository.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();

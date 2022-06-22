@@ -3,6 +3,10 @@ package com.geekcap.javaworld.jpa.model;
 import com.geekcap.javaworld.jpa.resource.UserResource;
 import com.geekcap.javaworld.jpa.repository.UserRepository;
 
+import com.geekcap.javaworld.jpa.model.Group;
+import com.geekcap.javaworld.jpa.resource.GroupResource;
+import com.geekcap.javaworld.jpa.repository.GroupRepository;
+
 import java.util.Set;
 import java.util.HashSet;
 
