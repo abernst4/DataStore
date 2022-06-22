@@ -1,6 +1,6 @@
 package com.geekcap.javaworld.jpa.repository;
 
-import com.geekcap.javaworld.jpa.resource.UserResource
+import com.geekcap.javaworld.jpa.resource.UserResource;
 import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
 import java.util.Set;
@@ -28,6 +28,11 @@ public class UserRepository {
         return email != null ? Optional.of(user) : Optional.empty();
     }
 
+    /**
+     * This is not currently mentioned in UserResource
+     * @param email
+     * @return
+     */
     public Optional<User> findByNameNamedQuery(String email) {
         User user = entityManager.createNamedQuery("User.findByEmail", User.class)
                                     .setParameter("email", email)
@@ -35,6 +40,11 @@ public class UserRepository {
         return user != null ? Optional.of(user) : Optional.empty();
     }
 
+    /**
+     * This is not currently mentioned in UserResource
+     * @param user
+     * @return
+     */
     public Optional<User> save(User user) {
         try {
             entityManager.getTransaction().begin();
@@ -47,6 +57,27 @@ public class UserRepository {
         return Optional.empty();
     }
 
+    /**
+     *
+     * @param id
+     */
+    public Set<Groups> getGroupsById(Integer id) {
+        User user = entityManager.find(User.class, id);
+        if (user != null) {
+            try {
+                // Start a transaction because we're going to change the database
+                entityManager.getTransaction().begin();
+
+                // Remove all references to this superhero in its movies
+                user.getGroups();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     public void deleteById(Integer id) {
         // Retrieve the movie with this ID
         User user = entityManager.find(User.class, id);
@@ -56,8 +87,8 @@ public class UserRepository {
                 entityManager.getTransaction().begin();
 
                 // Remove all references to this superhero in its movies
-                user.getGroups().forEach(movie -> {
-                    movie.getUsers().remove(user);
+                user.getGroups().forEach(group -> {
+                    group.getUsers().remove(user);
                 });
 
                 // Now remove the superhero

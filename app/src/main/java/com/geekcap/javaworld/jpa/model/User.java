@@ -1,6 +1,6 @@
 package com.geekcap.javaworld.jpa.model;
 
-import com.geekcap.javaworld.jpa.resource.UserResource
+import com.geekcap.javaworld.jpa.resource.UserResource;
 import com.geekcap.javaworld.jpa.repository.UserRepository;
 
 import java.util.Set;

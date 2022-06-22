@@ -32,10 +32,12 @@ public class UserResource {
 
     @Inject UserRepository userRepository;
 
+    /*
     @GET
     public Set<User> getAll() {
         return userRepository.listAll();
     }
+     */
 
     @GET
     @Path("{id}")
@@ -44,33 +46,49 @@ public class UserResource {
     }
 
     @GET
-    @Path("name/{name}")
-    public User getByName(@PathParam("name") String name) {
-        return userRepository.findByName(name);
+    @Path("users")
+    public Set<Groups> getUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * Maybe take out the email from the path
+     * @param email
+     * @return
+     */
+    @GET
+    @Path("name/{email}")
+    public User findByEmail(@PathParam("email") String email) {
+        return userRepository.findByEmail(name);
     }
     
+    
     @GET
-    @Path("gallery/{gallery}")
-    public List<Art> getByGroup(@PathParam("gallery") String gallery) {
-        return ar.findByGallery(gallery);
+    @Path("user/groups")
+    public Set<Groups> getGroupsById(Integer id) {
+        return userRepository.getGroupsById(user);
     }
+    
 
     @POST
     @Transactional
+    @Path("user/create")
     public Response create(User user) {
-        ar.persist(art);
-        if (ar.isPersistent(art)) {
-            return Response.status(Status.CREATED).entity(art).build();
+        userRepository.persist(user);
+        if (userRepository.isPersistent(user)) {
+            return Response.status(Status.CREATED).entity(user).build();
         }
         return Response.status(NOT_FOUND).build();
     }
 
+    
     @DELETE
     @Path("{id}")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
         // Response response = Response.status(Status.CREATED).entity(art).build();
-        boolean deleted = ar.deleteById(id);
+        boolean deleted = userRepository.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();
     }
+    
 }
