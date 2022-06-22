@@ -61,7 +61,7 @@ public class UserResource {
     @GET
     @Path("name/{email}")
     public User findByEmail(@PathParam("email") String email) {
-        return userRepository.findByEmail(name);
+        return userRepository.findByEmail(email);
     }
     
     
@@ -83,7 +83,7 @@ public class UserResource {
         return Response.status(NOT_FOUND).build();
     }
 
-    
+    /*
     @DELETE
     @Path("{id}")
     @Transactional
@@ -92,5 +92,6 @@ public class UserResource {
         boolean deleted = userRepository.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();
     }
+     */
     
 }
