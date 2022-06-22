@@ -1,4 +1,6 @@
 package com.geekcap.javaworld.jpa.repository;
+
+import com.geekcap.javaworld.jpa.resource.UserResource
 import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
 import java.util.Set;
