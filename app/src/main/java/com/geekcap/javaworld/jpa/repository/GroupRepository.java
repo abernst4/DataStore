@@ -1,8 +1,9 @@
 package com.geekcap.javaworld.jpa.repository;
 import java.util.List;
-
+import  com.geekcap.javaworld.jpa.resource.GroupResource;
+import  com.geekcap.javaworld.jpa.model.Group;
 import javax.enterprise.context.ApplicationScoped;
-import edu.yu.cs.artAPI.Art;
+//import edu.yu.cs.artAPI.Art;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 

@@ -19,8 +19,8 @@ import javax.ws.rs.core.Response.Status;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
-import  com.geekcap.javaworld.jpa.repository.*;
-import  com.geekcap.javaworld.jpa.model.*;
+import  com.geekcap.javaworld.jpa.repository.GroupRepository;
+import  com.geekcap.javaworld.jpa.model.Group;
 import  com.geekcap.javaworld.jpa.resource.*;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
@@ -44,7 +44,7 @@ public class GroupResource {
     
     @GET
     @Path("name/{name}")
-    public Art getByName(@PathParam("name") String name) {
+    public Group getByName(@PathParam("name") String name) {
         return groupRepo.findByName(name);
     }
     /*

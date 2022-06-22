@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
-
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 /*@Table(name = "Group")
@@ -21,7 +21,7 @@ import java.util.Set;
                 query = "SELECT group FROM Group group")
 })
 */
-public class Group  extends panacheEntity{
+public class Group extends PanacheEntity{
 
     //@Id
     //@GeneratedValue
