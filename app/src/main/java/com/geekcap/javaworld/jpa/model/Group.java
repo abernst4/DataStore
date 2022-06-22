@@ -30,7 +30,7 @@ public class Group extends PanacheEntity{
     //@Column(name="ISBN_NUMBER")
     //private String isbn;
 
-    public Group(int id, String name){
+    public Group(String id, String name){
             this.id = id; 
             this.name = name;
     }

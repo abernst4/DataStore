@@ -39,7 +39,7 @@ public class GroupResource {
     @GET
     @Path("{id}")
     public Group getById(@PathParam("id") Long id) {
-        return group.findById(id);
+        return groupRepo.findById(id);
     }
     
     @GET
