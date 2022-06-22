@@ -66,6 +66,7 @@ public class UserRepository {
      *
      * @param id
      */
+    /*
     public Set<Groups> getGroupsById(Integer id) {
         User user = entityManager.find(User.class, id);
         if (user != null) {
@@ -76,6 +77,8 @@ public class UserRepository {
             }
         }
     }
+    
+     */
 
     /*
     public boolean deleteById(Integer id) {

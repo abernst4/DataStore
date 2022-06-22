@@ -47,11 +47,13 @@ public class UserResource {
         return userRepository.findById(id);
     }
 
+    /*
     @GET
     @Path("users")
     public Set<Groups> getUsers() {
         return userRepository.findAll();
     }
+     */
 
     /**
      * Maybe take out the email from the path
@@ -64,12 +66,14 @@ public class UserResource {
         return userRepository.findByEmail(email);
     }
     
-    
+    /*
     @GET
     @Path("user/groups")
     public Set<Groups> getGroupsById(Integer id) {
         return userRepository.getGroupsById(id);
     }
+    
+     */
     
 
     @POST
