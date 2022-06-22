@@ -13,19 +13,19 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "Group")
+/*@Table(name = "Group")
 @NamedQueries({
         @NamedQuery(name = "Group.findByName",
                 query = "SELECT group FROM Group group WHERE group.name = :name"),
         @NamedQuery(name = "Group.findAll",
                 query = "SELECT group FROM Group group")
 })
+*/
+public class Group  extends panacheEntity{
 
-public class Group {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+    //@Id
+    //@GeneratedValue
+    private String id;
     private String name;
     //@Column(name="ISBN_NUMBER")
     //private String isbn;
@@ -37,11 +37,10 @@ public class Group {
 
     public Group(){}
 
-
-    @ManyToMany(mappedBy = "groups", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany //(mappedBy = "groups") //, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
-    public int getID(){
+    public String getID(){
             return this.id; 
     }
 
@@ -53,7 +52,7 @@ public class Group {
             this.name = name; 
     }
 
-    public void setID(Integer i){
+    public void setID(String i){
             this.id = i; 
     }
 
@@ -67,6 +66,6 @@ public class Group {
     }
 
     public String getId() {
-        return this.id.toString();
+        return this.id;
     }
 }

@@ -1,4 +1,22 @@
 package com.geekcap.javaworld.jpa.repository;
+import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
+import edu.yu.cs.artAPI.Art;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+
+@ApplicationScoped
+public class GroupRepository implements PanacheRepository<Group> {
+    public Group findByName(String name) {
+        return find("name", name).firstResult();
+    }
+
+    public List<Group> findByGallery(Integer id){
+       return find("id", id).list();
+   }   
+}
+/*
 import com.geekcap.javaworld.jpa.model.Group; //THE BUG IS IN MY PACKAGING; SINCE I SHOULDN'T HAVE TO USE MAIN/JAVA
 import javax.persistence.EntityManager;
 import java.util.Optional;
@@ -65,3 +83,4 @@ public class GroupRepository{
         }
     }
 }
+*/
