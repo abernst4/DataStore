@@ -60,11 +60,13 @@ public class UserResource {
      * @param email
      * @return
      */
+    /*
     @GET
     @Path("name/{email}")
     public User findByEmail(@PathParam("email") String email) {
         return userRepository.findByEmail(email);
     }
+     */
     
     /*
     @GET
@@ -75,7 +77,7 @@ public class UserResource {
     
      */
     
-
+    /*
     @POST
     @Transactional
     @Path("user/create")
@@ -86,6 +88,7 @@ public class UserResource {
         }
         return Response.status(NOT_FOUND).build();
     }
+     */
 
     /*
     @DELETE

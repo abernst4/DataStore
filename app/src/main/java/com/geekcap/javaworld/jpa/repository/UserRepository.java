@@ -4,6 +4,7 @@ import com.geekcap.javaworld.jpa.resource.UserResource;
 import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.HashSet;
 
 public class UserRepository {
     private EntityManager entityManager;
@@ -13,20 +14,25 @@ public class UserRepository {
 
     public User findById(Integer id) {
         User user = entityManager.find(User.class, id);
-        return user != null ? User.of(user) : User.empty();
+        //return user != null ? User.of(user) : null;
+        return user;
     }
 
+    /*
     public Set<User> findAll() {
         return (Set<User>) entityManager.createQuery("from User").getResultList();
     }
-
     
+     */
+
+    /*
     public User findByEmail(String email) {
         User user = entityManager.createQuery("SELECT b FROM User b WHERE b.email = :email", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
-        return email != null ? User.of(user) : User.empty();
+        return email != null ? User.of(user) : "";
     }
+     */
 
     /**
      * This is not currently mentioned in UserResource
