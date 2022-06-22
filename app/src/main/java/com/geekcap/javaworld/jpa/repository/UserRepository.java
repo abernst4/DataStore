@@ -12,7 +12,7 @@ public class UserRepository {
         this.entityManager = entityManager;
     }
 
-    public Optional<User> findById(Integer id) {
+    public User findById(Integer id) {
         User user = entityManager.find(User.class, id);
         return user != null ? Optional.of(user) : Optional.empty();
     }
@@ -21,7 +21,7 @@ public class UserRepository {
         return (Set<User>) entityManager.createQuery("from User").getResultList();
     }
 
-    public Optional<User> findByEmail(String email) {
+    public User findByEmail(String email) {
         User user = entityManager.createQuery("SELECT b FROM User b WHERE b.email = :email", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
@@ -33,7 +33,7 @@ public class UserRepository {
      * @param email
      * @return
      */
-    public Optional<User> findByNameNamedQuery(String email) {
+    public User findByNameNamedQuery(String email) {
         User user = entityManager.createNamedQuery("User.findByEmail", User.class)
                                     .setParameter("email", email)
                                     .getSingleResult();
@@ -45,7 +45,7 @@ public class UserRepository {
      * @param user
      * @return
      */
-    public Optional<User> save(User user) {
+    public User save(User user) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(user);

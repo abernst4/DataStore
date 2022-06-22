@@ -68,7 +68,7 @@ public class UserResource {
     @GET
     @Path("user/groups")
     public Set<Groups> getGroupsById(Integer id) {
-        return userRepository.getGroupsById(user);
+        return userRepository.getGroupsById(id);
     }
     
 
