@@ -65,12 +65,7 @@ public class UserRepository {
         User user = entityManager.find(User.class, id);
         if (user != null) {
             try {
-                // Start a transaction because we're going to change the database
-                entityManager.getTransaction().begin();
-
-                // Remove all references to this superhero in its movies
                 user.getGroups();
-                
             } catch (Exception e) {
                 e.printStackTrace();
             }

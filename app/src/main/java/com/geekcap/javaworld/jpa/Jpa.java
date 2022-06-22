@@ -1,3 +1,4 @@
+/*
 package com.geekcap.javaworld.jpa;
 import com.geekcap.javaworld.jpa.model.User;
 import com.geekcap.javaworld.jpa.model.Group;
@@ -14,18 +15,30 @@ import org.springframework.jdbc.support.JdbcUtils;
 
 public class Jpa {
     public static void main(String[] args) {
+    
+ */
         // Create our entity manager
+/*
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Books");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+ */
         // Create our repositories
+/*
         UserRepository userRepository = new UserRepository(entityManager);
         GroupRepository groupRepository = new GroupRepository(entityManager);
         
+ */
+        
         //create some Users
+        /*
         User user1 = new User(1, "one@mail.org");
         User user2 = new User(2, "two@mail.org");
+        
+         */
 
         //create some groups
+        /*
         Group g1 = new Group(3, "group1");
         g1.addUser(user1);
         g1.addUser(user2);
@@ -35,22 +48,30 @@ public class Jpa {
 
         groupRepository.save(g1);
         groupRepository.save(g2);
+        
+         */
 
         // Find all groups
+        /*
         System.out.println("Groups:");
         groupRepository.findAll().forEach(group -> {
             System.out.println("Group: [" + group.getId() + "] - " + group.getName());
             group.getUsers().forEach(System.out::println);
         });
+        
+         */
 
         // Find all superheroes
+        /*
         System.out.println("\nUsers:");
         userRepository.findAll().forEach(user -> {
             System.out.println(user);
             user.getGroups().forEach(System.out::println); //there is currently NO METHOD TO GET GROUPS
         });
+         */
         
          // Delete a group and verify that its Users are not deleted
+        /*
          groupRepository.deleteById(3);
          System.out.println("\nGroups (AFTER DELETE):");
          groupRepository.findAll().forEach(group -> {
@@ -62,6 +83,7 @@ public class Jpa {
              System.out.println(user);
              user.getGroups().forEach(System.out::println);
          });
+         */
  
  
          // DEBUG, dump our tables
@@ -107,7 +129,10 @@ public class Jpa {
         */
 
         // Close the entity manager and associated factory
+/*
         entityManager.close();
         entityManagerFactory.close();
     }
 }
+
+ */
