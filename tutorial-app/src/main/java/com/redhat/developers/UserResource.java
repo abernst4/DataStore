@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.JoinTable;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 @Table(name = "User")
@@ -73,19 +74,37 @@ public class User {
         this.email = name;
     }
 
+    /**
+     *
+     */
     @ManyToMany
     @JoinTable(name="GROUP_USERS",
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
     private Set<Group> groups = new HashSet<>();
 
+    //@Transactional
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
     public void addGroup(Group group) {
         this.groups.add(group);
     }
 
-    public Set<Group> getGroups(){
+    /**
+     *
+     * @return
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Set<Group> getGroups() {
         return this.groups;
     }
+
+    /**
+     * Add method for returning a single group
+     */
+
 }
 
 /*
