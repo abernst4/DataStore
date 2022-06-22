@@ -1,4 +1,4 @@
-package edu.yu.cs.artAPI;
+package com.geekcap.javaworld.jpa.resource;
 
 import java.util.List;
 import java.net.URI;
