@@ -5,8 +5,25 @@ import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List; 
+import javax.enterprise.context.ApplicationScoped;
+//import edu.yu.cs.artAPI.Art;
+//import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-public class UserRepository {
+
+@ApplicationScoped
+public class UserRepository implements PanacheRepository<User>{
+    public User findById(String id) {
+        return find("id", id).firstResult();
+    }
+
+    public User findByGallery(String email){
+       return find("email", email).firstResult();
+   }   
+}
+
+    /*
     private EntityManager entityManager;
     public UserRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -114,4 +131,4 @@ public class UserRepository {
     }
      */
 
-}
+//}

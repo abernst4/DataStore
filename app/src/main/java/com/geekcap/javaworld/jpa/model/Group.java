@@ -13,6 +13,7 @@ import java.util.Set;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
+@Table(name = "groups")
 /*@Table(name = "Group")
 @NamedQueries({
         @NamedQuery(name = "Group.findByName",

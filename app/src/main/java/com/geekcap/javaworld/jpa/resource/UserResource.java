@@ -43,7 +43,7 @@ public class UserResource {
 
     @GET
     @Path("{id}")
-    public User getById(@PathParam("id") Integer id) {
+    public User getById(@PathParam("id") String id) {
         return userRepository.findById(id);
     }
 

@@ -19,10 +19,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.JoinTable;
-
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
+
+@Table(name = "users")
 /*
-@Table(name = "User")
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", //findByName
                 query = "SELECT user FROM User user WHERE user.email = :email"),
@@ -31,14 +32,14 @@ import javax.persistence.JoinTable;
 })
  */
 
-public class User {
+public class User extends PanacheEntity{
     //@Id
     //@GeneratedValue
-    private Integer id;
-    private String first_name;
-    private String last_name;
+    private String id;
+    //private String first_name;
+   // private String last_name;
     private String email;
-    private String password;
+    //private String password;
     /*
     @OneToOne(mappedBy="user")
     private UserProfile profile;
@@ -48,7 +49,7 @@ public class User {
 
     }
 
-    public User(Integer id, String email) {
+    public User(String id, String email) {
         this.id = id;
         this.email = email;
     }
@@ -57,11 +58,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,6 +80,7 @@ public class User {
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
      */
+    @ManyToMany
     private Set<Group> groups = new HashSet<>();
 
     public void addGroup(Group group) {
