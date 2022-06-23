@@ -14,34 +14,34 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 @Table(name = "groups")
-/*@Table(name = "Group")
+//@Table(name = "Group")
 @NamedQueries({
         @NamedQuery(name = "Group.findByName",
                 query = "SELECT group FROM Group group WHERE group.name = :name"),
         @NamedQuery(name = "Group.findAll",
                 query = "SELECT group FROM Group group")
 })
-*/
-public class Group extends PanacheEntity{
+//*/
+public class Group {
 
-    //@Id
-    //@GeneratedValue
-    private String id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
     //@Column(name="ISBN_NUMBER")
     //private String isbn;
 
-    public Group(String id, String name){
+    public Group(Long id, String name){
             this.id = id; 
             this.name = name;
     }
 
     public Group(){}
 
-    @ManyToMany //(mappedBy = "groups") //, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
-    public String getID(){
+    public Long getID(){
             return this.id; 
     }
 
@@ -53,7 +53,7 @@ public class Group extends PanacheEntity{
             this.name = name; 
     }
 
-    public void setID(String i){
+    public void setID(Long i){
             this.id = i; 
     }
 
@@ -66,7 +66,7 @@ public class Group extends PanacheEntity{
         user.getGroups().add(this); 
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 }

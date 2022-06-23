@@ -10,12 +10,8 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 @ApplicationScoped
 public class GroupRepository implements PanacheRepository<Group> {
     public Group findByName(String name) {
-        return find("name", name).firstResult();
+        return find("name", name).firstResult();//it needs to have .firstResult()
     }
-
-    public List<Group> findByGallery(Integer id){
-       return find("id", id).list();
-   }   
 }
 /*
 import com.geekcap.javaworld.jpa.model.Group; //THE BUG IS IN MY PACKAGING; SINCE I SHOULDN'T HAVE TO USE MAIN/JAVA

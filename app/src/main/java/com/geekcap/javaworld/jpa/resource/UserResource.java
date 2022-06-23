@@ -27,19 +27,19 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
-@Path("/users")
+@Path("/userID")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 
     @Inject UserRepository userRepository;
 
-    /*
+    
     @GET
-    public Set<User> getAll() {
+    public List<User> getAll() {
         return userRepository.listAll();
     }
-     */
+    
 
     @GET
     @Path("{id}")

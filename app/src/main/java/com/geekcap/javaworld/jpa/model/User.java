@@ -23,18 +23,18 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 
 @Table(name = "users")
-/*
+
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", //findByName
                 query = "SELECT user FROM User user WHERE user.email = :email"),
         @NamedQuery(name = "User.findAll",
                 query = "SELECT b FROM Group b")
 })
- */
+ 
 
-public class User extends PanacheEntity{
-    //@Id
-    //@GeneratedValue
+public class User {
+    @Id
+    @GeneratedValue
     private String id;
     //private String first_name;
    // private String last_name;
@@ -74,14 +74,15 @@ public class User extends PanacheEntity{
         this.email = name;
     }
     
-    /*
+    
     @ManyToMany
     @JoinTable(name="GROUP_USERS",
             joinColumns=@JoinColumn(name="USER_ID"),
             inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
-     */
-    @ManyToMany
     private Set<Group> groups = new HashSet<>();
+
+    //@ManyToMany
+    //private Set<Group> groups = new HashSet<>();
 
     public void addGroup(Group group) {
         this.groups.add(group);
