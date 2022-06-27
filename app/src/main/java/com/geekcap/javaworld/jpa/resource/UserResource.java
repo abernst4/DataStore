@@ -49,6 +49,7 @@ public class UserResource {
 
     @POST
     @Transactional
+    @Path("") ///{group-id}/users
      public Response create(User user) {
         userRepo.persist(user);
         if (userRepo.isPersistent(user)) {
