@@ -63,7 +63,6 @@ public class GroupResource {
     @POST
     @Transactional
      public Response create(Group group) {
-         System.out.println("where will this appear");
         groupRepo.persist(group);
         if (groupRepo.isPersistent(group)) {
             return Response.status(Status.CREATED).entity(group).build();
@@ -72,7 +71,7 @@ public class GroupResource {
   } 
   
     @DELETE
-    @Path("/{id}")
+    @Path("{id}")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
         // Response response = Response.status(Status.CREATED).entity(art).build();

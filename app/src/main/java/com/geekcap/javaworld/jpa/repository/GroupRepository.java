@@ -2,6 +2,8 @@ package com.geekcap.javaworld.jpa.repository;
 import java.util.List;
 import  com.geekcap.javaworld.jpa.resource.GroupResource;
 import  com.geekcap.javaworld.jpa.model.Group;
+import com.geekcap.javaworld.jpa.model.User;
+
 import javax.enterprise.context.ApplicationScoped;
 //import edu.yu.cs.artAPI.Art;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -11,6 +13,10 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 public class GroupRepository implements PanacheRepository<Group> {
     public Group findByName(String name) {
         return find("name", name).firstResult();//it needs to have .firstResult()
+    }
+
+    public Group findByUser(User user){
+        return find("users", user).firstResult();
     }
 }
 /*

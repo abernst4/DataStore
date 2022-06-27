@@ -25,6 +25,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,13 +45,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 */ 
 
 public class User extends PanacheEntity{
-    private String name;
+    public String name;
     //public String creator;
     //private Long id; 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JoinColumn(name = "group_id")
+    //@JoinColumn(name = "group_id")
     public Group group;
 }
 
