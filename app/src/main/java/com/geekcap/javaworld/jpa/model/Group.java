@@ -27,11 +27,8 @@ import java.util.Set;
 public class Group extends PanacheEntity{
     
     public String name;
-    //@Column(name="ISBN_NUMBER")
-    //private String isbn;
-
     @OneToMany//, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<User> users = new HashSet<>();
+    public Set<User> users = new HashSet<>();
 }
 
 

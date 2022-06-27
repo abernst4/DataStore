@@ -11,8 +11,16 @@ import java.util.Set;
 import java.lang.annotation.Inherited;
 import java.util.HashSet;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.annotation.processing.Generated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,10 +45,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 public class User extends PanacheEntity{
     private String name;
-    private Long id; 
-    
-    @ManyToOne
-    private Group theGroup; 
+    //public String creator;
+    //private Long id; 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "group_id")
+    public Group group;
 }
 
 /*
