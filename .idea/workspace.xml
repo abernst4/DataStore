@@ -7,11 +7,15 @@
     <list default="true" id="3744cb89-8c5e-439b-996c-d5253643f035" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,6 +65,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -68,8 +76,9 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/geekcap/javaworld/jpa" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.39222616" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -102,6 +111,7 @@
       <workItem from="1655843328302" duration="555000" />
       <workItem from="1655843899263" duration="2137000" />
       <workItem from="1655915403254" duration="8578000" />
+      <workItem from="1656349599136" duration="366000" />
     </task>
     <servers />
   </component>
