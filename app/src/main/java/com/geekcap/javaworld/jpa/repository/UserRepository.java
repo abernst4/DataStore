@@ -14,9 +14,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<User>{
-    public User findById(String id) {
-        return find("id", id).firstResult();
-    }
+    
 
     public User findByGallery(String email){
        return find("email", email).firstResult();

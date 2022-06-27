@@ -32,20 +32,30 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 
-    @Inject UserRepository userRepository;
+    @Inject UserRepository userRepo;
 
     
     @GET
     public List<User> getAll() {
-        return userRepository.listAll();
+        return userRepo.listAll();
     }
     
 
     @GET
     @Path("{id}")
-    public User getById(@PathParam("id") String id) {
-        return userRepository.findById(id);
+    public User getById(@PathParam("id") Long id) {
+        return userRepo.findById(id);
     }
+
+    @POST
+    @Transactional
+     public Response create(User user) {
+        userRepo.persist(user);
+        if (userRepo.isPersistent(user)) {
+            return Response.status(Status.CREATED).entity(user).build();
+        }
+        return Response.status(NOT_FOUND).build();
+  } 
 
     /*
     @GET
