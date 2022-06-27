@@ -31,9 +31,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.JoinTable;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-@Entity
-
-@Table(name = "users")
 
 /*@NamedQueries({
         @NamedQuery(name = "User.findByEmail", //findByName
@@ -41,11 +38,12 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
         @NamedQuery(name = "User.findAll",
                 query = "SELECT b FROM Group b")
 })
-*/ 
-
+*/
+@Entity
+@Table(name = "users")
 public class User extends PanacheEntity{
-    private String name;
-    //public String creator;
+    public String name;
+    public String creator;
     //private Long id; 
 
     @ManyToOne(fetch = FetchType.LAZY)

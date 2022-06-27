@@ -15,14 +15,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "groups")
-//@Table(name = "Group")
 @NamedQueries({
         @NamedQuery(name = "Group.findById",
                 query = "SELECT group FROM Group group WHERE group.id = :name"),
         @NamedQuery(name = "Group.findAll",
                 query = "SELECT group FROM Group group")
 })
-
 
 public class Group extends PanacheEntity{
     
