@@ -11,9 +11,11 @@ import java.net.URI;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
@@ -59,7 +61,6 @@ public class UserResource {
         } else {
             return userRepo.findByNameAndEmail(groupId, name, email);
         }
-        return userRepo.listAll();
     }
     
 
@@ -68,20 +69,7 @@ public class UserResource {
     public User getById(@PathParam("id") Long id) {
         return userRepo.findById(id);
     }
-
-    /**
-     * Optional query param of "name"
-     * Gets art of a specific name from a specific gallery
-     * @param groupId
-     * @param name
-     * @return
-     */
-    @GET
-    @Path("/{group-id}")
-    public List<User> getByName(@PathParam("group-id") long groupId, @QueryParam("name") String name) {
-        return userRepo.findByGroup(groupId, name);
-    }
-
+    
     @POST
     @Transactional
     @Path("/{group-id}/users")
@@ -96,27 +84,12 @@ public class UserResource {
         uriBuilder.path(Long.toString(user.id));
         return Response.created(uriBuilder.build()).entity(user).status(Status.CREATED).build();
     }
-
-    @POST
-    @Transactional
-    @Path("/{group-id}/users")
-    public Response create(@PathParam("group-id") long groupId, User user, @Context UriInfo uriInfo) {
-        Group group = groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new);
-        user.group = group;
-        userRepo.persist(user);
-        if (!userRepo.isPersistent(user)) {
-            throw new NotFoundException();
-        }
-        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        uriBuilder.path(Long.toString(user.id));
-        return Response.created(uriBuilder.build()).entity(user).status(Status.CREATED).build();
-    }
-
+    
     @PUT
     @Path("/{group-id}/users/{id}")
     @Transactional
     public Response update(@PathParam("group-id") Long groupId, @PathParam("id") Long id, User user) {
-        groupRepo.findByIdOptional(galleryId).orElseThrow(NotFoundException::new);
+        groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new);
         User entity = userRepo.findById(id);
         if (entity == null) {
             return Response.status(NOT_FOUND).build();
@@ -130,7 +103,7 @@ public class UserResource {
     @Path("/{group-id}/users/{id}")
     @Transactional
     public Response deleteById(@PathParam("group-id") Long groupId, @PathParam("id") Long id) {
-        groupRepo.findByIdOptional(galleryId).orElseThrow(NotFoundException::new);
+        groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new);
         boolean deleted = userRepo.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();
     }

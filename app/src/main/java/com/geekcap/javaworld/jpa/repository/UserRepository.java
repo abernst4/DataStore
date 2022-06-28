@@ -18,11 +18,11 @@ public class UserRepository implements PanacheRepository<User>{
    }
 
     public List<User> findByName(long groupId, String name) {
-        return list("group_id = ?1 and name = ?2", group_id, name);
+        return list("group_id = ?1 and name = ?2", groupId, name);
     }
 
     public List<User> findByEmail(long groupId, String email){
-        return list("group_id = ?1 and email = ?2", group_id, email);
+        return list("group_id = ?1 and email = ?2", groupId, email);
     }
 
     public List<User> findByNameAndEmail(long groupId, String name, String email) {
