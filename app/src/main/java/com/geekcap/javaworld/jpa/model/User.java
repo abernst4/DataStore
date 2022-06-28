@@ -37,7 +37,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Table(name = "users")
 public class User extends PanacheEntity{
     public String name;
-    public String email;
     //private Long id; 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

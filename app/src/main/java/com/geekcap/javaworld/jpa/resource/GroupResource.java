@@ -7,7 +7,9 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -47,20 +49,20 @@ public class GroupResource {
     public Group getByName(@PathParam("name") String name) {
         return groupRepo.findByName(name);
     }
-    
-    /*
-    @GET
-    @Path("creator/{creator}")
-    public List<Art> getByCreator(@PathParam("creator") String creator) {
-        return ar.findByCreator(creator);
+
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Response update(@PathParam("id") Long id, Group gr) {
+        Group group = groupRepo.findById(id);
+        if (group == null) {
+            throw new NotFoundException();
+        }
+        group.name = gr.name;
+        return Response.status(Status.OK).entity(group).build();
     }
     
-    @GET
-    @Path("gallery/{gallery}")
-    public List<Art> getByGallery(@PathParam("gallery") String gallery) {
-        return ar.findByGallery(gallery);
-    }
-    */
     @POST
     @Transactional
      public Response create(Group group) {
@@ -75,7 +77,6 @@ public class GroupResource {
     @Path("{id}")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
-        // Response response = Response.status(Status.CREATED).entity(art).build();
         boolean deleted = groupRepo.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();
     }
