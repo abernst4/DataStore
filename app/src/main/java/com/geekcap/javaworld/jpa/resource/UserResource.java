@@ -64,16 +64,15 @@ public class UserResource {
 
     @POST
     @Transactional
-    @Path("/{group-id}")
-     public Response create(User user) {
+    @Path("")
+    //@Path("/{group-id}")
+    public Response create(User user) {
         userRepo.persist(user);
         if (userRepo.isPersistent(user)) {
             return Response.status(Status.CREATED).entity(user).build();
         }
         return Response.status(NOT_FOUND).build();
-  } 
-
-  
+    }
   
     /*
     @GET
