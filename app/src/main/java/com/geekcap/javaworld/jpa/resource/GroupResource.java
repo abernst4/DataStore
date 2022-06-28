@@ -11,9 +11,12 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -41,7 +44,7 @@ public class GroupResource {
     @GET
     @Path("{id}")
     public Group getById(@PathParam("id") Long id) {
-        return groupRepo.findById(id);
+        return groupRepo.findByIdOptional(id).orElseThrow(NotFoundException::new);
     }
     
     @GET
@@ -73,6 +76,20 @@ public class GroupResource {
         return Response.status(NOT_FOUND).build();
   } 
   
+  @POST
+    @Transactional
+    public Response create(Group group, @Context UriInfo uriInfo) {
+        groupRepo.persist(group);
+        if (!groupRepo.isPersistent(group)) {
+            throw new NotFoundException();
+        }
+        // return Response.status(Status.CREATED).entity(gallery).build();
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+        uriBuilder.path(Long.toString(group.id));
+        return Response.created(uriBuilder.build()).entity(group).status(Status.CREATED).build();
+    }
+
+
     @DELETE
     @Path("{id}")
     @Transactional

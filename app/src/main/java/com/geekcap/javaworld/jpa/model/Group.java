@@ -13,8 +13,8 @@ import java.util.*;
 @Table(name = "groups")
 public class Group extends PanacheEntity{
     public String name;
-    @OneToMany(cascade=CascadeType.ALL )//, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    public List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "group")//, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    public List<User> users;
 }
 
 
