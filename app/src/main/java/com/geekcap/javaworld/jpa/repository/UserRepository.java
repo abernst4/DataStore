@@ -3,22 +3,35 @@ package com.geekcap.javaworld.jpa.repository;
 import com.geekcap.javaworld.jpa.resource.UserResource;
 import com.geekcap.javaworld.jpa.model.User;
 import javax.persistence.EntityManager;
+
 import java.util.Set;
 import java.util.HashSet;
-import java.util.List; 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
-//import edu.yu.cs.artAPI.Art;
-//import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<User>{
-    
 
-    public User findByGallery(String email){
-       return find("email", email).firstResult();
-   }   
+    public List<User> findAllByGroup(String name){
+       return list("name", name);
+   }
+
+    public List<User> findByCreator(String creator){
+        return find("creator", creator).list();
+    }
+
+
+    public List<User> findByGroup(String name) {
+        return find("name", name).list();
+    }
+
+    public List<User> findByGroup(Long groupId, String name) {
+        return list("group_id = ?1 and name = ?2", groupId, name);
+    }
+
 }
 
     /*

@@ -14,13 +14,17 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+
 import javax.ws.rs.core.Response;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
 
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
@@ -31,9 +35,7 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
-
     @Inject UserRepository userRepo;
-
     
     @GET
     public List<User> getAll() {
@@ -42,14 +44,27 @@ public class UserResource {
     
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     public User getById(@PathParam("id") Long id) {
         return userRepo.findById(id);
     }
 
+    /**
+     * Optional query param of "name"
+     * Gets art of a specific name from a specific gallery
+     * @param groupId
+     * @param name
+     * @return
+     */
+    @GET
+    @Path("/{group-id}")
+    public List<User> getByName(@PathParam("group-id") long groupId, @QueryParam("name") String name) {
+        return userRepo.findByGroup(groupId, name);
+    }
+
     @POST
     @Transactional
-    @Path("") ///{group-id}/users
+    @Path("/{group-id}")
      public Response create(User user) {
         userRepo.persist(user);
         if (userRepo.isPersistent(user)) {
@@ -58,6 +73,8 @@ public class UserResource {
         return Response.status(NOT_FOUND).build();
   } 
 
+  
+  
     /*
     @GET
     @Path("users")
