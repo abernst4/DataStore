@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3744cb89-8c5e-439b-996c-d5253643f035" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/GroupResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/GroupResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

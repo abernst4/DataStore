@@ -44,10 +44,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Table(name = "users")
 public class User extends PanacheEntity{
     public String name;
+<<<<<<< HEAD
 
     //public String creator;
 
     public String creator;
+=======
+>>>>>>> 333a62ce58b8c7ba14ac685c8445391d2f9cf990
     //private Long id; 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
