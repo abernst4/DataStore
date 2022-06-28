@@ -11,135 +11,22 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<User>{
 
-    public List<User> findAllByGroup(String name){
-       return list("name", name);
+    public List<User> findAllByGroup(String group){
+       return list("group", group);
    }
 
-    public List<User> findByCreator(String creator){
-        return find("creator", creator).list();
+    public List<User> findByName(long groupId, String name) {
+        return list("group_id = ?1 and name = ?2", group_id, name);
     }
 
-
-    public List<User> findByGroup(String name) {
-        return find("name", name).list();
+    public List<User> findByEmail(String email){
+        return list("group_id = ?1 and email = ?2", group_id, email);
     }
 
-    public List<User> findByGroup(Long groupId, String name) {
-        return list("group_id = ?1 and name = ?2", groupId, name);
+    public List<User> findByNameAndEmail(long groupId, String name, String email) {
+        return list("group_id = ?1 and name = ?2 and email =?3", groupId, name, email);
     }
-
 }
-
-    /*
-    private EntityManager entityManager;
-    public UserRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    public User findById(Integer id) {
-        User user = entityManager.find(User.class, id);
-        //return user != null ? User.of(user) : null;
-        return user;
-    }
-
-    /*
-    public Set<User> findAll() {
-        return (Set<User>) entityManager.createQuery("from User").getResultList();
-    }
-    
-     */
-
-    /*
-    public User findByEmail(String email) {
-        User user = entityManager.createQuery("SELECT b FROM User b WHERE b.email = :email", User.class)
-                .setParameter("email", email)
-                .getSingleResult();
-        return email != null ? User.of(user) : "";
-    }
-     */
-
-    /**
-     * This is not currently mentioned in UserResource
-     * @param email
-     * @return
-     */
-    /*
-    public User findByNameNamedQuery(String email) {
-        User user = entityManager.createNamedQuery("User.findByEmail", User.class)
-                                    .setParameter("email", email)
-                                    .getSingleResult();
-        return user != null ? User.of(user) : User.empty();
-    }
-     */
-
-    /**
-     * This is not currently mentioned in UserResource
-     * @param user
-     * @return
-     */
-    /*
-    public User save(User user) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(user);
-            entityManager.getTransaction().commit();
-            return User.of(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-     
-        return User.empty();
-    }
-     */
-
-    /**
-     *
-     * @param id
-     */
-    /*
-    public Set<Groups> getGroupsById(Integer id) {
-        User user = entityManager.find(User.class, id);
-        if (user != null) {
-            try {
-                user.getGroups();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    
-     */
-
-    /*
-    public boolean deleteById(Integer id) {
-        // Retrieve the movie with this ID
-        User user = entityManager.find(User.class, id);
-        if (user != null) {
-            try {
-                // Start a transaction because we're going to change the database
-                entityManager.getTransaction().begin();
-
-                // Remove all references to this superhero in its movies
-                user.getGroups().forEach(group -> {
-                    group.getUsers().remove(user);
-                });
-
-                // Now remove the superhero
-                entityManager.remove(user);
-
-                // Commit the transaction
-                entityManager.getTransaction().commit();
-                return true;
-            } catch (Exception e) {
-                return false;
-                e.printStackTrace();
-            }
-        }
-    }
-     */
-
-//}

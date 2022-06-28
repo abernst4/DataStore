@@ -33,17 +33,11 @@ import javax.persistence.Table;
 import javax.persistence.JoinTable;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-/*@NamedQueries({
-        @NamedQuery(name = "User.findByEmail", //findByName
-                query = "SELECT user FROM User user WHERE user.email = :email"),
-        @NamedQuery(name = "User.findAll",
-                query = "SELECT b FROM Group b")
-})
-*/
 @Entity
 @Table(name = "users")
 public class User extends PanacheEntity{
     public String name;
+    public String email;
     //private Long id; 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -51,32 +45,3 @@ public class User extends PanacheEntity{
     //@JoinColumn(name = "group_id")
     public Group group;
 }
-
-/*
-EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Users");
-EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-public class User extends PanacheEntityBase{
-    //private String first_name;
-   // private String last_name;
-    public String email;
-    //private String password;
-    /*
-    @OneToOne(mappedBy="user")
-    private UserProfile profile;
-     
-   // @Id
-   // @GeneratedValue
-    //public Long id; 
-    
-    //@ManyToMany
-    //@JoinTable(name="GROUP_USERS",
-            //joinColumns=@JoinColumn(name="USER_ID"),
-            //inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
-    //private Set<Group> groups = new HashSet<>();
-
-    //@ManyToMany
-    //private Set<Group> groups = new HashSet<>();
-
-//}/
-*/

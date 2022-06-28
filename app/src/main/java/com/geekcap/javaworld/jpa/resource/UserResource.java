@@ -35,10 +35,25 @@ import io.quarkus.hibernate.orm.panache.PanacheQuery;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
+
     @Inject UserRepository userRepo;
-    
+    @Inject GroupRepository groupRepo;
+
     @GET
-    public List<User> getAll() {
+    @Path("/{group-id}/users")
+    public List<User> getAll(
+                            @PathParam("group-id") long groupId,
+                            @QueryParam("name") String name,
+                            @QueryParam("email") String email) {
+        if (name == null & email == null) {
+            return groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new).userList;
+        } else if (email == null) {
+            return userRepo.findByName(groupId, name);
+        } else if (name == null) {
+            return userRepo.findByEmail(groupId, email);
+        } else {
+            return userRepo.findByNameAndEmail(groupId, name, email);
+        }
         return userRepo.listAll();
     }
     
@@ -64,14 +79,17 @@ public class UserResource {
 
     @POST
     @Transactional
-    @Path("")
-    //@Path("/{group-id}")
-    public Response create(User user) {
+    @Path("/{group-id}/users")
+    public Response create(@PathParam("group-id") long groupId, User user, @Context UriInfo uriInfo) {
+        Group group = groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new);
+        user.group = group;
         userRepo.persist(user);
-        if (userRepo.isPersistent(user)) {
-            return Response.status(Status.CREATED).entity(user).build();
+        if (!userRepo.isPersistent(user)) {
+            throw new NotFoundException();
         }
-        return Response.status(NOT_FOUND).build();
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+        uriBuilder.path(Long.toString(user.id));
+        return Response.created(uriBuilder.build()).entity(user).status(Status.CREATED).build();
     }
   
     /*
@@ -91,7 +109,7 @@ public class UserResource {
     @GET
     @Path("name/{email}")
     public User findByEmail(@PathParam("email") String email) {
-        return userRepository.findByEmail(email);
+        return userRepo.findByEmail(email);
     }
      */
     
