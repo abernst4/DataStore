@@ -13,7 +13,6 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<User>{
-
     public List<User> findAllByGroup(String group){
        return list("group", group);
    }
@@ -22,7 +21,7 @@ public class UserRepository implements PanacheRepository<User>{
         return list("group_id = ?1 and name = ?2", group_id, name);
     }
 
-    public List<User> findByEmail(String email){
+    public List<User> findByEmail(long groupId, String email){
         return list("group_id = ?1 and email = ?2", group_id, email);
     }
 

@@ -5,7 +5,6 @@ import  com.geekcap.javaworld.jpa.model.Group;
 import com.geekcap.javaworld.jpa.model.User;
 
 import javax.enterprise.context.ApplicationScoped;
-//import edu.yu.cs.artAPI.Art;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 

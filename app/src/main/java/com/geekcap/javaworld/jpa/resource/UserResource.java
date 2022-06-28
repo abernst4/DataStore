@@ -51,7 +51,7 @@ public class UserResource {
                             @QueryParam("name") String name,
                             @QueryParam("email") String email) {
         if (name == null & email == null) {
-            return groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new).userList;
+            return groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new).users;
         } else if (email == null) {
             return userRepo.findByName(groupId, name);
         } else if (name == null) {
@@ -96,59 +96,42 @@ public class UserResource {
         uriBuilder.path(Long.toString(user.id));
         return Response.created(uriBuilder.build()).entity(user).status(Status.CREATED).build();
     }
-  
-    /*
-    @GET
-    @Path("users")
-    public Set<Groups> getUsers() {
-        return userRepository.findAll();
-    }
-     */
 
-    /**
-     * Maybe take out the email from the path
-     * @param email
-     * @return
-     */
-    /*
-    @GET
-    @Path("name/{email}")
-    public User findByEmail(@PathParam("email") String email) {
-        return userRepo.findByEmail(email);
-    }
-     */
-    
-    /*
-    @GET
-    @Path("user/groups")
-    public Set<Groups> getGroupsById(Integer id) {
-        return userRepository.getGroupsById(id);
-    }
-    
-     */
-    
-    /*
     @POST
     @Transactional
-    @Path("user/create")
-    public Response create(User user) {
-        userRepository.persist(user);
-        if (userRepository.isPersistent(user)) {
-            return Response.status(Status.CREATED).entity(user).build();
+    @Path("/{group-id}/users")
+    public Response create(@PathParam("group-id") long groupId, User user, @Context UriInfo uriInfo) {
+        Group group = groupRepo.findByIdOptional(groupId).orElseThrow(NotFoundException::new);
+        user.group = group;
+        userRepo.persist(user);
+        if (!userRepo.isPersistent(user)) {
+            throw new NotFoundException();
         }
-        return Response.status(NOT_FOUND).build();
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+        uriBuilder.path(Long.toString(user.id));
+        return Response.created(uriBuilder.build()).entity(user).status(Status.CREATED).build();
     }
-     */
 
-    /*
-    @DELETE
-    @Path("{id}")
+    @PUT
+    @Path("/{group-id}/users/{id}")
     @Transactional
-    public Response deleteById(@PathParam("id") Integer id) {
-        // Response response = Response.status(Status.CREATED).entity(art).build();
-        boolean deleted = userRepository.deleteById(id);
+    public Response update(@PathParam("group-id") Long groupId, @PathParam("id") Long id, User user) {
+        groupRepo.findByIdOptional(galleryId).orElseThrow(NotFoundException::new);
+        User entity = userRepo.findById(id);
+        if (entity == null) {
+            return Response.status(NOT_FOUND).build();
+        }
+        entity.name = user.name;
+        entity.email = user.email;
+        return Response.status(Status.OK).entity(entity).build();
+    }
+
+    @DELETE
+    @Path("/{group-id}/users/{id}")
+    @Transactional
+    public Response deleteById(@PathParam("group-id") Long groupId, @PathParam("id") Long id) {
+        groupRepo.findByIdOptional(galleryId).orElseThrow(NotFoundException::new);
+        boolean deleted = userRepo.deleteById(id);
         return deleted ? Response.noContent().build() : Response.status(BAD_REQUEST).build();
     }
-     */
-    
 }
