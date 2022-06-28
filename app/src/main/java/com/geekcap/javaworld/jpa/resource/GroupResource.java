@@ -72,7 +72,7 @@ public class GroupResource {
   } 
   
     @DELETE
-    @Path("/{id}")
+    @Path("{id}")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
         // Response response = Response.status(Status.CREATED).entity(art).build();
