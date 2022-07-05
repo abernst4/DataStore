@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3744cb89-8c5e-439b-996c-d5253643f035" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/geekcap/javaworld/jpa/resource/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +112,7 @@
       <workItem from="1655843899263" duration="2137000" />
       <workItem from="1655915403254" duration="8578000" />
       <workItem from="1656349599136" duration="3417000" />
+      <workItem from="1657054342004" duration="1685000" />
     </task>
     <servers />
   </component>
