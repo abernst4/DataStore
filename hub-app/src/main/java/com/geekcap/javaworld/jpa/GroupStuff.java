@@ -9,7 +9,7 @@ import java.util.*;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 @Entity
-public class GroupStuff extends PanacheEntity {// why isn't there an error here
+public class GroupStuff extends PanacheEntityBase {// why isn't there an error here
     @Id
     public long groupId;
 
