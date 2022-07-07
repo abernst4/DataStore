@@ -20,6 +20,8 @@ public class GroupStuff extends PanacheEntityBase {// why isn't there an error h
         this.ia = ia;
     }
 
+    public GroupStuff(){}
+
     public Map<Long, InetAddress> toMap() {
         Map<Long, InetAddress> IdMap = new HashMap<>();
         List<GroupStuff> groupList = GroupStuff.listAll();
