@@ -22,7 +22,7 @@ public class GroupStuff extends PanacheEntityBase {// why isn't there an error h
 
     public Map<Long, InetAddress> toMap() {
         Map<Long, InetAddress> IdMap = new HashMap<>();
-        List<galleryInfo> groupList = GroupStuff.listAll();
+        List<GroupStuff> groupList = GroupStuff.listAll();
 
         for (GroupStuff gs : groupList) {
             IdMap.put(gs.groupId, gs.ia);
