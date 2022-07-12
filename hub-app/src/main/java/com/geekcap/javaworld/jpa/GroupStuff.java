@@ -1,4 +1,4 @@
-package main.java.com.geekcap.javaworld.jpa;
+package com.geekcap.javaworld.jpa;
 
 import java.net.InetAddress;
 
