@@ -1,7 +1,0 @@
-com/geekcap/javaworld/jpa/resource/GroupResource.class
-com/geekcap/javaworld/jpa/repository/GroupRepository.class
-com/geekcap/javaworld/jpa/resource/UserResource.class
-META-INF/panache-archive.marker
-com/geekcap/javaworld/jpa/repository/UserRepository.class
-com/geekcap/javaworld/jpa/model/User.class
-com/geekcap/javaworld/jpa/model/Group.class
